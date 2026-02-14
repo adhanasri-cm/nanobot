@@ -34,6 +34,10 @@ class ExecTool(Tool):
         ]
         self.allow_patterns = allow_patterns or []
         self.restrict_to_workspace = restrict_to_workspace
+        
+        if not self.restrict_to_workspace:
+            from loguru import logger
+            logger.warning("ExecTool started with restrict_to_workspace=False. This allows the agent to access files outside the workspace.")
     
     @property
     def name(self) -> str:

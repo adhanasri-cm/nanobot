@@ -51,15 +51,20 @@ class SpawnTool(Tool):
                     "type": "string",
                     "description": "Optional short label for the task (for display)",
                 },
+                "model": {
+                    "type": "string",
+                    "description": "Optional model to use for this subagent (e.g. 'gpt-4', 'claude-3-opus'). If not specified, uses the main agent's model.",
+                },
             },
             "required": ["task"],
         }
     
-    async def execute(self, task: str, label: str | None = None, **kwargs: Any) -> str:
+    async def execute(self, task: str, label: str | None = None, model: str | None = None, **kwargs: Any) -> str:
         """Spawn a subagent to execute the given task."""
         return await self._manager.spawn(
             task=task,
             label=label,
+            model=model,
             origin_channel=self._origin_channel,
             origin_chat_id=self._origin_chat_id,
         )

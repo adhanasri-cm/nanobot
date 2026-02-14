@@ -54,6 +54,7 @@ class SubagentManager:
         self,
         task: str,
         label: str | None = None,
+        model: str | None = None,
         origin_channel: str = "cli",
         origin_chat_id: str = "direct",
     ) -> str:
@@ -63,6 +64,7 @@ class SubagentManager:
         Args:
             task: The task description for the subagent.
             label: Optional human-readable label for the task.
+            model: Optional model to use for this subagent.
             origin_channel: The channel to announce results to.
             origin_chat_id: The chat ID to announce results to.
         
@@ -77,9 +79,12 @@ class SubagentManager:
             "chat_id": origin_chat_id,
         }
         
+        # Build model - use provided or fallback to default
+        target_model = model or self.model
+
         # Create background task
         bg_task = asyncio.create_task(
-            self._run_subagent(task_id, task, display_label, origin)
+            self._run_subagent(task_id, task, display_label, origin, target_model)
         )
         self._running_tasks[task_id] = bg_task
         
@@ -95,6 +100,7 @@ class SubagentManager:
         task: str,
         label: str,
         origin: dict[str, str],
+        model: str,
     ) -> None:
         """Execute the subagent task and announce the result."""
         logger.info(f"Subagent [{task_id}] starting task: {label}")
@@ -133,7 +139,7 @@ class SubagentManager:
                 response = await self.provider.chat(
                     messages=messages,
                     tools=tools.get_definitions(),
-                    model=self.model,
+                    model=model,
                     temperature=self.temperature,
                     max_tokens=self.max_tokens,
                 )

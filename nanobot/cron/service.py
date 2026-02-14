@@ -143,6 +143,13 @@ class CronService:
         }
         
         self.store_path.write_text(json.dumps(data, indent=2))
+        
+        # Secure file permissions
+        try:
+            import os
+            os.chmod(self.store_path, 0o600)
+        except Exception:
+            pass
     
     async def start(self) -> None:
         """Start the cron service."""

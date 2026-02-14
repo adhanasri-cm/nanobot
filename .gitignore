@@ -1,22 +1,66 @@
-.assets
-.env
-*.pyc
-dist/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
 build/
-docs/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
+.installed.cfg
 *.egg
-*.pyc
-*.pyo
-*.pyd
-*.pyw
-*.pyz
-*.pywz
-*.pyzz
 .venv/
 venv/
-__pycache__/
-poetry.lock
+ENV/
+
+# Testing
 .pytest_cache/
+.coverage
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Environment / Secret
+.env
+.env.local
+.env.*.local
+config.json
+*.pem
+*.key
+
+# Logs
+*.log
 botpy.log
-tests/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node.js (for bridge)
+node_modules/
+bridge/node_modules/
+bridge/dist/
+
+# nanobot specific
+workspace/
+!nanobot/workspace/
+.nanobot/
+history/
+memory/

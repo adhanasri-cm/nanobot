@@ -60,6 +60,14 @@ def save_config(config: Config, config_path: Path | None = None) -> None:
     
     with open(path, "w") as f:
         json.dump(data, f, indent=2)
+    
+    # Secure the file permissions (read/write by owner only)
+    try:
+        import os
+        os.chmod(path, 0o600)
+    except Exception:
+        # Best effort, may fail on some systems/filesystems
+        pass
 
 
 def _migrate_config(data: dict) -> dict:
