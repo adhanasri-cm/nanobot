@@ -1,49 +1,55 @@
 # User Profile
 
-Information about the user to help personalize interactions.
-
 ## Basic Information
 
-- **Name**: (your name)
-- **Timezone**: (your timezone, e.g., UTC+8)
-- **Language**: (preferred language)
+- **Name**: Developer
+- **Timezone**: UTC (adjust as needed)
+- **Language**: English
 
 ## Preferences
 
 ### Communication Style
 
+- [x] Technical
 - [ ] Casual
 - [ ] Professional
-- [ ] Technical
 
 ### Response Length
 
-- [ ] Brief and concise
+- [x] Brief and concise
 - [ ] Detailed explanations
-- [ ] Adaptive based on question
+- [x] Adaptive based on question
 
 ### Technical Level
 
 - [ ] Beginner
 - [ ] Intermediate
-- [ ] Expert
+- [x] Expert
 
 ## Work Context
 
-- **Primary Role**: (your role, e.g., developer, researcher)
-- **Main Projects**: (what you're working on)
-- **Tools You Use**: (IDEs, languages, frameworks)
+- **Primary Role**: React/React Native Developer (Full-stack)
+- **Main Projects**: Modern web and mobile applications
+- **Tools You Use**: VS Code, TypeScript, React 18+, React Native, Jest, ESLint, Git
 
-## Topics of Interest
+## Project Setup
 
-- 
-- 
-- 
+- **Workspace**: ~/projects/my-app (example — update with actual project path)
+- **Package Manager**: npm (or yarn/pnpm — specify)
+- **Build Tool**: Vite (React) / Metro (React Native)
+- **Test Framework**: Jest + React Testing Library
+- **Linter**: ESLint with TypeScript support
+
+## Collaboration Preferences
+
+- **Communication**: Direct and transparent
+- **Decision-making**: Discuss trade-offs before major changes
+- **Code Review**: Thorough feedback on PRs; explain "why" not just "what"
+- **Documentation**: Inline comments for non-obvious logic; README for project setup
 
 ## Special Instructions
 
-(Any specific instructions for how the assistant should behave)
-
----
-
-*Edit this file to customize nanobot's behavior for your needs.*
+1. Always suggest performance improvements and accessibility enhancements
+2. Recommend TypeScript types; avoid `any` type
+3. Keep components small and reusable (atomic design)
+4. Prioritize user experience and code maintainability
