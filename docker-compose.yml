@@ -1,9 +1,15 @@
+# Nanobot React Developer Agent - Docker Compose
+# Run on your agent machine with git, Slack, Gmail etc. configured in ~/.nanobot
+
 x-common-config: &common-config
   build:
     context: .
     dockerfile: Dockerfile
   volumes:
     - ~/.nanobot:/root/.nanobot
+    # Optional: mount SSH key for GitHub (path only - not in config)
+    # Create key on host, add pubkey to GitHub, then mount private key here
+    # - ./keys/nanobot_ed25519:/root/.nanobot/keys/id_ed25519:ro
 
 services:
   nanobot-gateway:
@@ -13,15 +19,19 @@ services:
     restart: unless-stopped
     ports:
       - 18790:18790
+    environment:
+      - NANOBOT_AGENTS__DEFAULTS__WORKSPACE=/root/.nanobot/workspace
+      # Use SSH for git (path to key - set only if key is mounted above)
+      # - GIT_SSH_COMMAND=ssh -i /root/.nanobot/keys/id_ed25519 -o StrictHostKeyChecking=accept-new
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: 1G
+          cpus: '4'
+          memory: 8G
         reservations:
           cpus: '0.25'
           memory: 256M
-  
+
   nanobot-cli:
     <<: *common-config
     profiles:
